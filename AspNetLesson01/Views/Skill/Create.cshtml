@@ -1,0 +1,35 @@
+﻿@using AspNetLesson01.Models;
+@model SkillForm;
+@{
+	Layout = "_Layout";
+}
+<div class="container">
+	<div class="row mt-5">
+		<div class="col-md-6">
+			<div class="card">
+				<div class="card-body">
+					<div class="info">
+						<form method="post" enctype="multipart/form-data" action="/skill/create">
+						
+							<div class="mb-3">
+								@Html.LabelFor(m => m.Title, new {@class="form-label"}) 
+								@Html.TextBoxFor(m => m.Title, new {@class="form-control"})
+								@Html.ValidationMessageFor(m => m.Title)
+							</div>
+							<div class="mb-3">
+								@Html.LabelFor(m => m.Experience, new {@class="form-label"})
+								@Html.TextBoxFor(m => m.Experience, new {@class="form-control"})
+								@Html.ValidationMessageFor(m => m.Experience)
+							</div>
+							<button type="submit" class="btn btn-primary">Save</button>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+@section Scripts {
+	
+}

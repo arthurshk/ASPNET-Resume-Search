@@ -1,0 +1,82 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+
+@using AspNetLesson01.Models;
+@model AboutMe;
+@{
+	//var aboutMe = ViewBag.AboutMe as AboutMe;
+	//var aboutMe = ViewData["AboutMe"] as AboutMe;
+	Layout = "_Layout";
+}
+<div class="container">
+	<div class="row mt-5">
+		<div class="col-md-6">
+			<div class="card">
+				<div class="card-body">
+					<div class="info">
+
+						<p>@Model.FirstName</p>
+						<p>@Model.LastName</p>
+						<p>@Model.Age</p>
+						<p>@Model.Description</p>
+						<a class="btn btn-primary" target="_blank" href="/about-me/edit">Edit</a>
+							<table class="table table-hover">
+								<tbody>
+									@foreach (var skill in Model.Skills)
+									{
+										<tr>
+											<td>@skill.Title</td>
+											<td style="width: 50%">
+											<div class="progress">
+												<div class="progress-bar"
+													 role="progressbar"
+													 style="width: @(skill.Experience.ToString() + "%")"
+													 aria-valuenow="@skill.Experience"
+													 aria-valuemin="0"
+													 aria-valuemax="100"></div>
+											</div>
+											</td>
+											<td>
+											<div class="d-flex">
+												<a href="/skill/edit/@skill.Id" class="btn btn-sm btn-outline-secondary">Edit</a>
+											<form method="post" action="/skill/delete/@skill.Id">
+												<button href="/skill/edit/@skill.Id" class="mx-1 btn btn-sm btn-outline-warning" type="submit">Delete</button>
+
+											</form>
+											</div>
+										</td>
+										</tr>
+								
+								
+									}
+								</tbody>
+							</table>
+						<div><a href="/skill/create" class="btn btn-sm btn-outline-secondary">Create</a></div>
+
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="col-md-6">
+			<div class="card" id="about-me">
+				<div class="card-body">
+					<h5 class="card-title"></h5>
+					<div class="info"></div>
+					<div class="mb-3">
+						<label for="search" class="form-label">Skills</label>
+						<input type="text" class="form-control" id="search" placeholder="Search..." aria-describedby="emailHelp">
+					</div>
+
+					<ul id="skills">
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+@section Scripts {
+	<script src="/js/script.js"></script>
+}
